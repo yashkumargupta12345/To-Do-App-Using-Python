@@ -3,23 +3,23 @@ import PySimpleGUI as sg
 import time
 
 
-sg.theme("DarkTeal10")
+sg.theme('DarkAmber')
 clock = sg.Text('', key='Clock')
 label = sg.Text("Type in a to-do")
-input_box = sg.InputText(tooltip="Enter to-do", key='todo')
+input_box = sg.InputText(tooltip="Enter todo", key='todo')
 add_button = sg.Button("Add", size=8)
 list_box = sg.Listbox(values=functions.get_todos(), key='todos',
-                      enable_events=True, size=[40, 7])
+                      enable_events=True, size=[40, 8])
 edit_button = sg.Button("Edit")
 complete_button = sg.Button("Complete")
 exit_button = sg.Button("Exit")
 button_labels = ["Close", "Apply"]
 
-layout = [[clock],[label], [input_box, add_button],
+layout = [[clock], [label], [input_box, add_button],
           [list_box, edit_button, complete_button],
           [exit_button]]
 
-window = sg.Window("My to-do App",
+window = sg.Window("My To-Do App",
                    layout=layout,
                    font=("Helvetica", 20))
 
@@ -32,7 +32,7 @@ while True:
             new_todo = values['todo'] + '\n'
             todos.append(new_todo)
             functions.write_todos(todos)
-            window[todos].update(values=todos)
+            window['todos'].update(values=todos)
 
         case "Edit":
             try:
@@ -68,7 +68,7 @@ while True:
 
 print("Bye!")
 window.close()
-exit()
+
 
 
 
